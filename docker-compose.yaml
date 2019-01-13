@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+  vpn:
+    build: ./
+    cap_add:
+      - net_admin
+      - sys_admin
+    environment:
+      - VPN_LOCATION=usla1
+      - SS_METHOD=chacha20-ietf-poly1305
+      - SS_PASSWORD=dangerous
+    restart: always
+    volumes:
+      - /dev/net:/dev/net:z
+      - expressvpn:/var/lib/expressvpn
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
+    ports:
+      - "1443:8388/tcp"
+      - "1443:8388/udp"
+volumes:
+  expressvpn:
