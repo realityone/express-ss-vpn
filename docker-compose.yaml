@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.4'
 services:
   vpn:
     build: ./
@@ -18,5 +18,11 @@ services:
     ports:
       - "1443:8388/tcp"
       - "1443:8388/udp"
+    healthcheck:
+      test: ["CMD", "ping", "-W", "5", "-c", "1", "8.8.8.8"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 180s
 volumes:
   expressvpn:
