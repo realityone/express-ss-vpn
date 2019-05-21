@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -ex
+set -x
 
 umount /etc/resolv.conf
 echo "nameserver 8.8.8.8\nnameserver 8.8.4.4\n" > /etc/resolv.conf
