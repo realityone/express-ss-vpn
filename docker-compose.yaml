@@ -20,7 +20,7 @@ services:
       - "1443:8388/tcp"
       - "1443:8388/udp"
     healthcheck:
-      test: ["CMD", "ping", "-W", "5", "-c", "1", "8.8.8.8"]
+      test: ["CMD", "curl", "--socks5-hostname", "127.0.0.1:1080", "google.com"]
       interval: 10s
       timeout: 3s
       retries: 10
