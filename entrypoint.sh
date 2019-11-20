@@ -9,7 +9,7 @@ gateway=`ip route get 8.8.8.8 | grep src | awk '{print $3}'`
 
 iptables -A OUTPUT -t mangle -p tcp --sport 8388 -j MARK --set-mark 0x1
 # iptables -A OUTPUT -t mangle -p udp --sport 8388 -j MARK --set-mark 0x1
-if [[ ! -z $INGRESS_IP ]]; then
+if [ ! -z $INGRESS_IP ]; then
     ip route add $INGRESS_IP via $gateway dev eth0
 fi
 
